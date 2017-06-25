@@ -49,7 +49,7 @@ if (argv.w) {
 
 	// custom parameters to replace: --#REPLACEME="replace with me"
 	const params = {};
-	for(let i in argv) if(i.substring(0, 1) == "#" && i.length > 1) params[i] = argv[i];
+	for(let p in argv) if(p.substring(0, 1) == "#" && p.length > 1) params[p] = argv[p];
 	
 	// arguments: input, output, compress, mangle, lint
 	fuser = fuse.fuse(argv.i, argv.o, argv.c, argv.m, argv.l, params);
