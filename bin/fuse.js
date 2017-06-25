@@ -47,8 +47,12 @@ if (argv.w) {
 	
 } else {
 
+	// custom parameters to replace: --#REPLACEME="replace with me"
+	const params = {};
+	for(let i in argv) if(i.substring(0, 1) == "#" && i.length > 1) params[i] = argv[i];
+	
 	// arguments: input, output, compress, mangle, lint
-	fuser = fuse.fuse(argv.i, argv.o, argv.c, argv.m, argv.l);
+	fuser = fuse.fuse(argv.i, argv.o, argv.c, argv.m, argv.l, params);
 
 	fuser.on('fuse', function (results) {
 		console.log('Updated ' + colors.green(results.updated) + ', fusing ' + results.fused.length + ' files @ ' + colors.green(fuser.formatTime()) + '.\n');
